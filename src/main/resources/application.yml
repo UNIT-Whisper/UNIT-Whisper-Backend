@@ -1,6 +1,24 @@
 spring:
   application:
     name: whisper
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        globally_quoted_identifiers: true
+    generate-ddl: false
+    open-in-view: false
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://${RDB_URL}:${RDB_PORT}/${RDB_SCHEMA}?serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false"
+    username: ${RDB_USER_NAME}
+    password: ${RDB_PASSWORD}
 
 client:
   kakao:
