@@ -108,7 +108,7 @@ public class UserService {
         KakaoAuthPayload authPayload =
                 kakaoRestful.getKakaoAuthInfo(
                         KakaoAuthRequest.createKakaoAuthRequest(
-                                clientId, redirectUri, authCode, clientSecret));
+                                "5818289447397369d006bcd7145c25d6", redirectUri, authCode));
 
         log.info("authPayload : {}", authPayload);
         log.info("accessToken : {}", authPayload.getAccessToken());

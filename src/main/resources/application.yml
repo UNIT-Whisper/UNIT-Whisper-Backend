@@ -36,19 +36,15 @@ client:
     authBaseUrl: ${KAKAO_AUTH_BASE_URL}
     authRedirectUri: http://54.180.66.230:8080/auth/callback/kakao
     authLocalRedirectUri: http://54.180.66.230:8080/auth/callback/kakao
-#    authRedirectUri: ${KAKAO_REDIRECT_URI}
-#    authLocalRedirectUri: ${KAKAO_LOCAL_REDIRECT_URI}
     apiBaseUrl: ${KAKAO_API_BASE_URL}
 
 auth:
   jwt:
     secret-key: ${JWT_SECRET_KEY:testkeytestkeytestkeytestkeytestkeytestkeytestkeytestkeytestkey}
-    access-exp: ${JWT_ACCESS_EXP:3600}
-    refresh-exp: ${JWT_REFRESH_EXP:3600}
+    access-exp: ${JWT_ACCESS_EXP:86400}
+    refresh-exp: ${JWT_REFRESH_EXP:86400}
     issuer: ${JWT_ISSUER:test}
 
 swagger:
   user: ${SWAGGER_USER:user}
   password: ${SWAGGER_PASSWORD:password}
-
-#client-authentication-method: client_secret_post
