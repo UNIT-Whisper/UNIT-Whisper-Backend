@@ -20,8 +20,6 @@ public class Whisper extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-
     private String content;
 
     private Double latitude;
@@ -34,16 +32,22 @@ public class Whisper extends BaseEntity {
 
     private LocalDateTime lastNotificationDateTime;
 
+    public static Whisper toEntity(Long userId,
+                                   String content,
+                                   Double latitude,
+                                   Double longitude,
+                                   String address) {
+        return new Whisper(userId, content, latitude, longitude, address);
+    }
+
     @Builder
     private Whisper(
             Long userId,
-            String title,
             String content,
             Double latitude,
             Double longitude,
             String address) {
         this.userId = userId;
-        this.title = title;
         this.content = content;
         this.latitude = latitude;
         this.longitude = longitude;

@@ -26,16 +26,12 @@ public class WhisperService {
     public Long saveWhisper(WhisperCreateRequest request) {
         User currentUser = userHelper.getCurrentUser();
 
-        String address = kakaoRestful.getAddress(request.latitude(), request.longitude());
+        String address = kakaoRestful.getAddress(request.getLatitude(), request.getLongitude());
 
-        Whisper whisper =
-                Whisper.builder()
-                        .content(request.content())
-                        .latitude(request.latitude())
-                        .longitude(request.longitude())
-                        .address(address)
-                        .userId(currentUser.getId())
-                        .build();
+        Whisper whisper = Whisper.toEntity(
+                currentUser.getId(), request.getContent()
+                , request.getLatitude(), request.getLongitude(), address
+        );
 
         whisperRepository.save(whisper);
         currentUser.addWhisper(whisper);
