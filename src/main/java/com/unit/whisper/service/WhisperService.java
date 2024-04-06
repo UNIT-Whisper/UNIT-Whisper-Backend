@@ -57,6 +57,8 @@ public class WhisperService {
         return WhisperResponse.builder()
                 .whisperId(whisper.getId())
                 .content(whisper.getContent())
+                .latitude(whisper.getLatitude())
+                .longitude(whisper.getLongitude())
                 .address(whisper.getAddress())
                 .createDate(whisper.getCreatedAt())
                 .build();
