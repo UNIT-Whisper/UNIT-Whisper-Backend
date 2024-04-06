@@ -1,11 +1,15 @@
 package com.unit.whisper.external.kakao;
 
 
+import com.unit.whisper.error.exception.KakaoMapException;
+import com.unit.whisper.external.ExternalClientProperties;
 import com.unit.whisper.external.kakao.dto.response.KakaoAuthPayload;
+import com.unit.whisper.external.kakao.dto.response.KakaoMapPayload;
 import com.unit.whisper.external.kakao.dto.response.KakaoUserInfoPayload;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -19,6 +23,8 @@ public class KakaoRestful {
 
     private final WebClient kakaoAuthApiWebClient;
     private final WebClient kakaoApiWebClient;
+    private final WebClient kakaoMapApiWebClient;
+    private final ExternalClientProperties properties;
 
     private static final String GET_TOKEN_PATH = "/oauth/token";
     private static final String GET_USER_INFO_PATH = "/v2/user/me";
@@ -61,5 +67,35 @@ public class KakaoRestful {
                 .bodyToMono(KakaoUserInfoPayload.class)
                 .onErrorReturn(new KakaoUserInfoPayload())
                 .block();
+    }
+
+    /** 카카오 지도 정보 획득 */
+    public String getAddress(Double latitude, Double longitude) {
+        KakaoMapPayload response =
+                kakaoMapApiWebClient
+                        .mutate()
+                        .build()
+                        .get()
+                        .uri(
+                                uriBuilder ->
+                                        uriBuilder
+                                                .path("/v2/local/geo/coord2address.json")
+                                                .queryParam("x", String.valueOf(latitude))
+                                                .queryParam("y", String.valueOf(longitude))
+                                                .build())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .header(
+                                HttpHeaders.AUTHORIZATION,
+                                "KakaoAK " + properties.getKakao().getClientId())
+                        .retrieve()
+                        .bodyToMono(KakaoMapPayload.class)
+                        .onErrorReturn(new KakaoMapPayload())
+                        .block();
+
+        if (response == null || response.getDocuemnts().isEmpty()) {
+            throw new KakaoMapException();
+        }
+
+        return response.getDocuemnts().get(0).getRoadAddress().getAddressName();
     }
 }
