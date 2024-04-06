@@ -31,7 +31,7 @@ public class WhisperService {
     public Long saveWhisper(WhisperCreateRequest request) {
         User currentUser = userHelper.getCurrentUser();
 
-        String address = kakaoRestful.getAddress(request.getLatitude(), request.getLongitude());
+        String address = kakaoRestful.getAddress(request.getLongitude(), request.getLatitude());
         log.info("address : {}", address);
         Whisper whisper =
                 Whisper.toEntity(
