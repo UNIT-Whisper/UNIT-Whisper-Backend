@@ -32,21 +32,14 @@ public class Whisper extends BaseEntity {
 
     private LocalDateTime lastNotificationDateTime;
 
-    public static Whisper toEntity(Long userId,
-                                   String content,
-                                   Double latitude,
-                                   Double longitude,
-                                   String address) {
+    public static Whisper toEntity(
+            Long userId, String content, Double latitude, Double longitude, String address) {
         return new Whisper(userId, content, latitude, longitude, address);
     }
 
     @Builder
     private Whisper(
-            Long userId,
-            String content,
-            Double latitude,
-            Double longitude,
-            String address) {
+            Long userId, String content, Double latitude, Double longitude, String address) {
         this.userId = userId;
         this.content = content;
         this.latitude = latitude;

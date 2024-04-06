@@ -22,10 +22,10 @@ public class KakaoMapPayload {
         private boolean isEnd;
     }
 
-    private List<Docuemnt> docuemnts;
+    private List<Document> documents;
 
     @Getter
-    public static class Docuemnt {
+    public static class Document {
 
         @JsonProperty("road_address")
         private RoadAddress roadAddress;

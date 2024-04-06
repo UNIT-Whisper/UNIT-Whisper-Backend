@@ -9,9 +9,11 @@ import com.unit.whisper.external.ExternalClientProperties;
 import com.unit.whisper.external.kakao.KakaoRestful;
 import com.unit.whisper.repository.WhisperRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -27,11 +29,14 @@ public class WhisperService {
         User currentUser = userHelper.getCurrentUser();
 
         String address = kakaoRestful.getAddress(request.getLatitude(), request.getLongitude());
-
-        Whisper whisper = Whisper.toEntity(
-                currentUser.getId(), request.getContent()
-                , request.getLatitude(), request.getLongitude(), address
-        );
+        log.info("address : {}", address);
+        Whisper whisper =
+                Whisper.toEntity(
+                        currentUser.getId(),
+                        request.getContent(),
+                        request.getLatitude(),
+                        request.getLongitude(),
+                        address);
 
         whisperRepository.save(whisper);
         currentUser.addWhisper(whisper);

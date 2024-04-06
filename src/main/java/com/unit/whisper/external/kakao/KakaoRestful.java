@@ -1,7 +1,6 @@
 package com.unit.whisper.external.kakao;
 
 
-import com.unit.whisper.error.exception.KakaoMapException;
 import com.unit.whisper.external.ExternalClientProperties;
 import com.unit.whisper.external.kakao.dto.response.KakaoAuthPayload;
 import com.unit.whisper.external.kakao.dto.response.KakaoMapPayload;
@@ -50,7 +49,6 @@ public class KakaoRestful {
 
     /** 카카오 로그인 정보 획득 */
     public KakaoUserInfoPayload getKakaoUserInfo(String accessToken) {
-        log.info("accessToken : {}", accessToken);
 
         return kakaoApiWebClient
                 .mutate()
@@ -92,10 +90,10 @@ public class KakaoRestful {
                         .onErrorReturn(new KakaoMapPayload())
                         .block();
 
-        if (response == null || response.getDocuemnts().isEmpty()) {
-            throw new KakaoMapException();
+        if (response == null || response.getDocuments().isEmpty()) {
+            return null;
         }
 
-        return response.getDocuemnts().get(0).getRoadAddress().getAddressName();
+        return response.getDocuments().get(0).getRoadAddress().getAddressName();
     }
 }
