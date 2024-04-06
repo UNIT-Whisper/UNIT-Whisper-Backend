@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class UserService {
 
     private final KakaoRestful kakaoRestful;
@@ -57,7 +58,6 @@ public class UserService {
     }
 
     public AuthResponse saveUserAndGetToken(KakaoUserInfoPayload kakaoUserInfoPayload) {
-        //        checkLoginEmail(kakaoUserInfoPayload.getKakaoAccount().getEmail());
         User user =
                 userRepository
                         .findByIdentityId(kakaoUserInfoPayload.getId())

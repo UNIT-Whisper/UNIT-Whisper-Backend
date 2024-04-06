@@ -2,6 +2,9 @@ package com.unit.whisper.domain.user;
 
 
 import com.unit.whisper.domain.BaseEntity;
+import com.unit.whisper.domain.whisper.Whisper;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -21,6 +24,9 @@ public class User extends BaseEntity {
 
     private String nickName;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Whisper> whispers = new ArrayList<>();
+
     private User(Long identityId, String nickName) {
         this.identityId = identityId;
         this.nickName = nickName;
@@ -28,5 +34,13 @@ public class User extends BaseEntity {
 
     public static User toEntity(Long identityId, String nickName) {
         return new User(identityId, nickName);
+    }
+
+    /**
+     * @title 구름 던지기
+     * @param whisper
+     */
+    public void addWhisper(Whisper whisper) {
+        this.getWhispers().add(whisper);
     }
 }
