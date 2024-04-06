@@ -1,7 +1,6 @@
 package com.unit.whisper.config;
 
 
-import java.time.Duration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,13 +25,12 @@ public class RedisConfig {
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
-        RedisStandaloneConfiguration redisConfig = new RedisStandaloneConfiguration(host, port);
+        RedisStandaloneConfiguration redisConfig = new RedisStandaloneConfiguration();
+        redisConfig.setHostName(host);
+        redisConfig.setPort(port);
 
-        LettuceClientConfiguration clientConfig =
-                LettuceClientConfiguration.builder()
-                        .commandTimeout(Duration.ofSeconds(1))
-                        .shutdownTimeout(Duration.ZERO)
-                        .build();
+        LettuceClientConfiguration clientConfig = LettuceClientConfiguration.builder().build();
+
         return new LettuceConnectionFactory(redisConfig, clientConfig);
     }
 }
