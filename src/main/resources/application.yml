@@ -30,8 +30,8 @@ client:
     clientId: ${KAKAO_CLIENT_ID}
     clientSecret: ${KAKAO_CLIENT_SECRET}
     authBaseUrl: ${KAKAO_AUTH_BASE_URL}
-    authRedirectUri: http://localhost:8080/auth/callback/kakao
-    authLocalRedirectUri: http://localhost:8080/auth/callback/kakao
+    authRedirectUri: http://54.180.66.230:8080/auth/callback/kakao
+    authLocalRedirectUri: http://54.180.66.230:8080/auth/callback/kakao
 #    authRedirectUri: ${KAKAO_REDIRECT_URI}
 #    authLocalRedirectUri: ${KAKAO_LOCAL_REDIRECT_URI}
     apiBaseUrl: ${KAKAO_API_BASE_URL}
