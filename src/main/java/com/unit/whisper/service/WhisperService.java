@@ -34,8 +34,8 @@ public class WhisperService {
                 Whisper.toEntity(
                         currentUser.getId(),
                         request.getContent(),
-                        request.getLatitude(),
                         request.getLongitude(),
+                        request.getLatitude(),
                         address);
 
         whisperRepository.save(whisper);
