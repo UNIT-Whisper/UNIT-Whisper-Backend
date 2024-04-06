@@ -8,6 +8,8 @@ import lombok.Getter;
 public class KakaoUserInfoPayload {
 
     private long id;
+
+    @JsonProperty(value = "kakao_account")
     private KakaoAccount kakaoAccount;
 
     @Getter

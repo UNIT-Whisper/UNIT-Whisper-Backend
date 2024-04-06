@@ -1,10 +1,8 @@
 package com.unit.whisper.config;
 
 
-import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import java.util.List;
 import org.springframework.context.annotation.Bean;
@@ -24,17 +22,5 @@ public class SwaggerConfig {
 
     private Info getInfo() {
         return new Info().title("Whisper API").description("나만의 감정 별마당").version("v1");
-    }
-
-    private Components authSetting() {
-        return new Components()
-                .addSecuritySchemes(
-                        "access-token",
-                        new SecurityScheme()
-                                .type(SecurityScheme.Type.HTTP)
-                                .scheme("bearer")
-                                .bearerFormat("JWT")
-                                .in(SecurityScheme.In.HEADER)
-                                .name("Authorization"));
     }
 }

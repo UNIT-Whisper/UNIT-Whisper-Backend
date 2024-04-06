@@ -2,8 +2,15 @@ package com.unit.whisper.external.kakao.dto.request;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 import lombok.Getter;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 @Getter
 public class KakaoAuthRequest {
@@ -23,13 +30,15 @@ public class KakaoAuthRequest {
     @JsonProperty("client_secret")
     private String clientSecret;
 
-    public static Map<String, String> createKakaoAuthRequest(
+    public static MultiValueMap<String, String> createKakaoAuthRequest(
             String clientId, String redirectUri, String authCode, String clientSecret) {
-        return Map.of(
-                "grant_type", "authorization_code",
-                "client_id", clientId,
-                "redirect_uri", redirectUri,
-                "code", authCode,
-                "client_secret", clientSecret);
+
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
+
+        map.add("grant_type", "authorization_code");
+        map.add("client_id", clientId);
+        map.add("redirect_uri", redirectUri);
+        map.add("code", authCode);
+        return map;
     }
 }
