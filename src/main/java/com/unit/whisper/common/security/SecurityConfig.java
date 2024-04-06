@@ -56,7 +56,7 @@ public class SecurityConfig {
                 .permitAll()
                 .mvcMatchers("/user/login/**")
                 .permitAll()
-                .mvcMatchers("/auth/token/refresh")
+                .mvcMatchers("/user/login/refresh")
                 .permitAll()
                 .mvcMatchers("/**/health/**")
                 .permitAll()
