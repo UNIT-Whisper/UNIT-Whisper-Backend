@@ -22,7 +22,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedMethods("*")
                 .allowedOrigins(patterns)
-                .allowedOriginPatterns("*")
                 .exposedHeaders("Set-Cookie")
                 .allowCredentials(true);
     }
