@@ -15,12 +15,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         ArrayList<String> allowedOriginPatterns = new ArrayList<>();
         allowedOriginPatterns.add("http://localhost:3000");
+        allowedOriginPatterns.add("https://whisper.smalljoy.co.kr");
+        allowedOriginPatterns.add("http://whisper.smalljoy.co.kr");
 
         String[] patterns = allowedOriginPatterns.toArray(String[]::new);
         registry.addMapping("/**")
-                .allowedMethods("*")
-                .allowedOriginPatterns("*")
-                .exposedHeaders("Set-Cookie")
-                .allowCredentials(true);
+            .allowedMethods("*")
+            .allowedOrigins(patterns)
+            .allowedOriginPatterns("*")
+            .exposedHeaders("Set-Cookie")
+            .allowCredentials(true);
     }
 }
