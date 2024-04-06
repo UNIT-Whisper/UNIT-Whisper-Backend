@@ -16,10 +16,8 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI springShopOpenAPI() {
         return new OpenAPI()
-                .servers(getServers())
-                .info(getInfo())
-                .components(
-                        new Components().addSecuritySchemes("user_token", tokenSecuritySchema()));
+            .servers(getServers())
+            .info(getInfo());
     }
 
     private List<Server> getServers() {
@@ -28,14 +26,5 @@ public class SwaggerConfig {
 
     private Info getInfo() {
         return new Info().title("Whisper API").description("나만의 감정 별마당").version("v1");
-    }
-
-    public SecurityScheme tokenSecuritySchema() {
-        return new SecurityScheme()
-                .name("Authorization")
-                .scheme("bearer")
-                .bearerFormat("JWT")
-                .in(SecurityScheme.In.HEADER)
-                .type(SecurityScheme.Type.HTTP);
     }
 }
