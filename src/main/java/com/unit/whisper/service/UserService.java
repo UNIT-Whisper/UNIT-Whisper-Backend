@@ -57,7 +57,7 @@ public class UserService {
     }
 
     public AuthResponse saveUserAndGetToken(KakaoUserInfoPayload kakaoUserInfoPayload) {
-//        checkLoginEmail(kakaoUserInfoPayload.getKakaoAccount().getEmail());
+        //        checkLoginEmail(kakaoUserInfoPayload.getKakaoAccount().getEmail());
         User user =
                 userRepository
                         .findByIdentityId(kakaoUserInfoPayload.getId())
@@ -105,9 +105,10 @@ public class UserService {
 
     private KakaoAuthPayload getKakaoAuthToken(String authCode, String redirectUri) {
 
-        KakaoAuthPayload authPayload = kakaoRestful.getKakaoAuthInfo(
-                KakaoAuthRequest.createKakaoAuthRequest(
-                        clientId, redirectUri, authCode, clientSecret));
+        KakaoAuthPayload authPayload =
+                kakaoRestful.getKakaoAuthInfo(
+                        KakaoAuthRequest.createKakaoAuthRequest(
+                                clientId, redirectUri, authCode, clientSecret));
 
         log.info("authPayload : {}", authPayload);
         log.info("accessToken : {}", authPayload.getAccessToken());

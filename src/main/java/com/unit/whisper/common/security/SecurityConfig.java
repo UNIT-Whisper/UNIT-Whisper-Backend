@@ -1,5 +1,6 @@
 package com.unit.whisper.common.security;
 
+import static com.unit.whisper.util.StaticValue.SwaggerPatterns;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,8 +16,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 
-import static com.unit.whisper.util.StaticValue.SwaggerPatterns;
-
 @RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig {
@@ -29,7 +28,7 @@ public class SecurityConfig {
     @Value("${swagger.password}")
     private String swaggerPassword;
 
-     /** 스웨거용 인메모리 유저 설정 */
+    /** 스웨거용 인메모리 유저 설정 */
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
         UserDetails user =
@@ -51,18 +50,18 @@ public class SecurityConfig {
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-                http.authorizeRequests()
-                        .expressionHandler(expressionHandler())
-                        .antMatchers(SwaggerPatterns)
-                        .permitAll()
-                        .mvcMatchers("/user/login/**")
-                        .permitAll()
-                        .mvcMatchers("/auth/token/refresh")
-                        .permitAll()
-                        .mvcMatchers("/**/health/**")
-                        .permitAll()
-                        .anyRequest()
-                        .hasRole("USER");
+        http.authorizeRequests()
+                .expressionHandler(expressionHandler())
+                .antMatchers(SwaggerPatterns)
+                .permitAll()
+                .mvcMatchers("/user/login/**")
+                .permitAll()
+                .mvcMatchers("/auth/token/refresh")
+                .permitAll()
+                .mvcMatchers("/**/health/**")
+                .permitAll()
+                .anyRequest()
+                .hasRole("USER");
 
         http.apply(filterConfig);
 

@@ -3,7 +3,6 @@ package com.unit.whisper.external.kakao;
 
 import com.unit.whisper.external.kakao.dto.response.KakaoAuthPayload;
 import com.unit.whisper.external.kakao.dto.response.KakaoUserInfoPayload;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;

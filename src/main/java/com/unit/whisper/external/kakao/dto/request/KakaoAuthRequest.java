@@ -2,7 +2,6 @@ package com.unit.whisper.external.kakao.dto.request;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.Getter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;

@@ -15,7 +15,6 @@ public class KakaoUserInfoPayload {
 
     @Getter
     @NoArgsConstructor
-
     public static class KakaoAccount {
 
         @JsonProperty(value = "profile")
