@@ -27,19 +27,18 @@ public class Whisper extends BaseEntity {
 
     private Double longitude;
 
+    @Embedded private Address address;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Builder
-    private Whisper(String title, String content, Double latitude, Double longitude) {
-        this.title = title;
+    private Whisper(String content, Double latitude, Double longitude, User user, Address address) {
         this.content = content;
         this.latitude = latitude;
         this.longitude = longitude;
-    }
-
-    public void userUpdate(User user) {
         this.user = user;
+        this.address = address;
     }
 }
