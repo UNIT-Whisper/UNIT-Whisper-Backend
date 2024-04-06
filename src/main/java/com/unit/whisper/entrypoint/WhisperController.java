@@ -3,14 +3,12 @@ package com.unit.whisper.entrypoint;
 
 import com.unit.whisper.common.response.CustomResponseEntity;
 import com.unit.whisper.dto.WhisperCreateRequest;
+import com.unit.whisper.entrypoint.response.WhisperResponse;
 import com.unit.whisper.service.WhisperService;
 import io.swagger.v3.oas.annotations.Operation;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/whisper")
@@ -26,5 +24,10 @@ public class WhisperController {
         whisperService.saveWhisper(request);
 
         return CustomResponseEntity.success(whisperService.saveWhisper(request));
+    }
+
+    @GetMapping("/{whisperId}")
+    public CustomResponseEntity<WhisperResponse> getWhisper(@PathVariable Long whisperId) {
+        return CustomResponseEntity.success(whisperService.getWhisper(whisperId));
     }
 }

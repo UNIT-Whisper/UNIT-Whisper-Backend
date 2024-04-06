@@ -5,6 +5,9 @@ import com.unit.whisper.common.helper.UserHelper;
 import com.unit.whisper.domain.user.User;
 import com.unit.whisper.domain.whisper.Whisper;
 import com.unit.whisper.dto.WhisperCreateRequest;
+import com.unit.whisper.entrypoint.response.WhisperResponse;
+import com.unit.whisper.enumeration.ResultCode;
+import com.unit.whisper.exception.BaseException;
 import com.unit.whisper.external.ExternalClientProperties;
 import com.unit.whisper.external.kakao.KakaoRestful;
 import com.unit.whisper.repository.WhisperRepository;
@@ -42,5 +45,20 @@ public class WhisperService {
         currentUser.addWhisper(whisper);
 
         return whisper.getId();
+    }
+
+    public WhisperResponse getWhisper(Long whisperId) {
+        User currentUser = userHelper.getCurrentUser();
+        Whisper whisper =
+                whisperRepository
+                        .findByIdAndUserId(whisperId, currentUser.getId())
+                        .orElseThrow(() -> new BaseException(ResultCode.NOT_FOUND_WHISPER));
+
+        return WhisperResponse.builder()
+                .whisperId(whisper.getId())
+                .content(whisper.getContent())
+                .address(whisper.getAddress())
+                .createDate(whisper.getCreatedAt())
+                .build();
     }
 }
