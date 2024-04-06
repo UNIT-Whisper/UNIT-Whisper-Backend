@@ -1,10 +1,8 @@
 package com.unit.whisper.config;
 
 
-import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import java.util.List;
 import org.springframework.context.annotation.Bean;
@@ -15,9 +13,7 @@ public class SwaggerConfig {
 
     @Bean
     public OpenAPI springShopOpenAPI() {
-        return new OpenAPI()
-            .servers(getServers())
-            .info(getInfo());
+        return new OpenAPI().servers(getServers()).info(getInfo());
     }
 
     private List<Server> getServers() {
