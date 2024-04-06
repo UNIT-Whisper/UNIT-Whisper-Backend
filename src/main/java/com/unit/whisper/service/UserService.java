@@ -47,6 +47,8 @@ public class UserService {
 
     @Transactional
     public AuthResponse loginKakao(AuthRequest request) {
+        log.info("authCode : {}", request.getAuthCode());
+        log.info("redirectUri : {}", request.getRedirectUri());
         KakaoUserInfoPayload kakaoUserInfoResponse =
                 getKakaoUserInfo(
                         getKakaoAuthToken(request.getAuthCode(), request.getRedirectUri()));
@@ -55,10 +57,10 @@ public class UserService {
     }
 
     public AuthResponse saveUserAndGetToken(KakaoUserInfoPayload kakaoUserInfoPayload) {
-        checkLoginEmail(kakaoUserInfoPayload.getKakaoAccount().getEmail());
+//        checkLoginEmail(kakaoUserInfoPayload.getKakaoAccount().getEmail());
         User user =
                 userRepository
-                        .findByEmail(kakaoUserInfoPayload.getKakaoAccount().getEmail())
+                        .findByIdentityId(kakaoUserInfoPayload.getId())
                         .orElseGet(() -> createUser(kakaoUserInfoPayload));
 
         return createAuthResponse(user);
@@ -87,7 +89,7 @@ public class UserService {
     private User createUser(KakaoUserInfoPayload kakaoUserInfoPayload) {
         User user =
                 User.toEntity(
-                        kakaoUserInfoPayload.getKakaoAccount().getEmail(),
+                        kakaoUserInfoPayload.getId(),
                         kakaoUserInfoPayload.getKakaoAccount().getProfile().getNickname());
 
         return userRepository.save(user);
@@ -102,9 +104,15 @@ public class UserService {
     }
 
     private KakaoAuthPayload getKakaoAuthToken(String authCode, String redirectUri) {
-        return kakaoRestful.getKakaoAuthInfo(
+
+        KakaoAuthPayload authPayload = kakaoRestful.getKakaoAuthInfo(
                 KakaoAuthRequest.createKakaoAuthRequest(
                         clientId, redirectUri, authCode, clientSecret));
+
+        log.info("authPayload : {}", authPayload);
+        log.info("accessToken : {}", authPayload.getAccessToken());
+
+        return authPayload;
     }
 
     private KakaoUserInfoPayload getKakaoUserInfo(KakaoAuthPayload response) {

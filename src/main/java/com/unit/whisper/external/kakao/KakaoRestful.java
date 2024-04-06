@@ -3,8 +3,9 @@ package com.unit.whisper.external.kakao;
 
 import com.unit.whisper.external.kakao.dto.response.KakaoAuthPayload;
 import com.unit.whisper.external.kakao.dto.response.KakaoUserInfoPayload;
-import java.util.Map;
+
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.util.MultiValueMap;
@@ -12,6 +13,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class KakaoRestful {
@@ -43,6 +45,8 @@ public class KakaoRestful {
 
     /** 카카오 로그인 정보 획득 */
     public KakaoUserInfoPayload getKakaoUserInfo(String accessToken) {
+        log.info("accessToken : {}", accessToken);
+
         return kakaoApiWebClient
                 .mutate()
                 .build()

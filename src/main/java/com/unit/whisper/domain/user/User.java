@@ -17,16 +17,16 @@ public class User extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String email;
+    private Long identityId;
 
     private String nickName;
 
-    private User(String email, String nickName) {
-        this.email = email;
+    private User(Long identityId, String nickName) {
+        this.identityId = identityId;
         this.nickName = nickName;
     }
 
-    public static User toEntity(String email, String nickName) {
-        return new User(email, nickName);
+    public static User toEntity(Long identityId, String nickName) {
+        return new User(identityId, nickName);
     }
 }

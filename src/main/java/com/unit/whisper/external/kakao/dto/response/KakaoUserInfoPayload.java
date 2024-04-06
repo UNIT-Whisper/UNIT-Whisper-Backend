@@ -3,6 +3,7 @@ package com.unit.whisper.external.kakao.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 public class KakaoUserInfoPayload {
@@ -13,11 +14,16 @@ public class KakaoUserInfoPayload {
     private KakaoAccount kakaoAccount;
 
     @Getter
+    @NoArgsConstructor
+
     public static class KakaoAccount {
+
+        @JsonProperty(value = "profile")
         private Profile profile;
 
         @Getter
         public static class Profile {
+
             private String nickname;
 
             @JsonProperty("thumbnail_image_url")
