@@ -10,8 +10,6 @@ public record AddressDto(
         String region1depthName,
         String region2depthName,
         String region3depthName,
-        String roadName,
-        String mainBuildingNumber,
-        String subBuildingNumber,
-        String buildingName,
-        String zoneNo) {}
+        String region3depthHName,
+        String mainAddressNo,
+        String subAddressNo) {}

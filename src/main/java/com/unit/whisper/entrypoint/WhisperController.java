@@ -25,7 +25,7 @@ public class WhisperController {
     public ResponseEntity<String> createWhisper(
             @AuthenticationPrincipal Long memberId,
             @Valid @RequestBody WhisperCreateRequest request) {
-        service.saveWhisper(memberId, request);
+        service.saveWhisper(2L, request);
 
         return ResponseEntity.ok().body("속삭임이 생성 완료되었습니다.");
     }

@@ -11,7 +11,7 @@ public record RoadAddressDto(
         String region2depthName,
         String region3depthName,
         String roadName,
-        String mainBuildingNumber,
-        String subBuildingNumber,
+        String mainBuildingNo,
+        String subBuildingNo,
         String buildingName,
         String zoneNo) {}

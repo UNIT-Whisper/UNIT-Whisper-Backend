@@ -15,8 +15,8 @@ public record Document(
                 .city(roadAddressDto.region2depthName())
                 .subDistinct(roadAddressDto.region3depthName())
                 .roadName(roadAddressDto.roadName())
-                .mainBuildingNumber(roadAddressDto.mainBuildingNumber())
-                .subBuildingNumber(roadAddressDto.subBuildingNumber())
+                .mainBuildingNumber(roadAddressDto.mainBuildingNo())
+                .subBuildingNumber(roadAddressDto.subBuildingNo())
                 .buildingName(roadAddressDto.buildingName())
                 .zipCode(roadAddressDto.zoneNo())
                 .build();

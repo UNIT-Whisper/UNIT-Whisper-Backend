@@ -19,7 +19,7 @@ public enum ErrorCode {
     MEMBER_NOT_FOUND_ERROR(400, "MEMBER-001", "존재하지 않는 사용자 입니다."),
 
     // external
-    KAKAO_MAP_API_ERROR(400, "KAKAO-001", "카카오 맵 API 입니다.");
+    KAKAO_MAP_API_ERROR(400, "KAKAO-001", "카카오 맵 API 에러 입니다.");
 
     private final int status;
     private final String code;
