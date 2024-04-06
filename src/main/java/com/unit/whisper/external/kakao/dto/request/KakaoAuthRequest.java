@@ -25,7 +25,7 @@ public class KakaoAuthRequest {
     private String clientSecret;
 
     public static MultiValueMap<String, String> createKakaoAuthRequest(
-            String clientId, String redirectUri, String authCode, String clientSecret) {
+            String clientId, String redirectUri, String authCode) {
 
         MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 
