@@ -1,4 +1,4 @@
-package com.unit.whisper.error.exception;
+package com.unit.whisper.exception;
 
 
 import com.unit.whisper.error.ErrorCode;

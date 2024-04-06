@@ -1,6 +1,7 @@
 package com.unit.whisper.entrypoint;
 
 
+import com.unit.whisper.common.response.CustomResponseEntity;
 import com.unit.whisper.entrypoint.request.AuthRequest;
 import com.unit.whisper.entrypoint.response.AuthResponse;
 import com.unit.whisper.service.UserService;
@@ -19,13 +20,14 @@ public class UserController {
 
     @Operation(summary = "카카오 소셜 로그인")
     @GetMapping("/login")
-    public AuthResponse login(@RequestBody AuthRequest request) {
-        return userService.loginKakao(request);
+    public CustomResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
+        return CustomResponseEntity.success(userService.loginKakao(request));
     }
 
     @Operation(summary = "리프레시 토큰으로 액세스 토큰 재발급")
     @GetMapping("/login/reissue")
-    public AuthResponse reissue(@RequestHeader(value = "Refresh-Token") String refreshToken) {
-        return userService.reissue(refreshToken);
+    public CustomResponseEntity<AuthResponse> reissue(
+            @RequestHeader(value = "Refresh-Token") String refreshToken) {
+        return CustomResponseEntity.success(userService.reissue(refreshToken));
     }
 }

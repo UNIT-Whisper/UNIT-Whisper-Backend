@@ -6,7 +6,7 @@ import static com.unit.whisper.error.ErrorCode.INTERNAL_SERVER_ERROR;
 import static com.unit.whisper.error.ErrorCode.REQUEST_PARAMETER_NOT_FOUND_ERROR;
 import static com.unit.whisper.error.ErrorCode.REQUEST_PARAMETER_TYPE_NOT_MATCH_ERROR;
 
-import com.unit.whisper.error.exception.BusinessException;
+import com.unit.whisper.exception.BusinessException;
 import javax.transaction.TransactionalException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
