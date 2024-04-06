@@ -7,10 +7,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
+
+import static com.unit.whisper.util.StaticValue.SwaggerPatterns;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -24,16 +29,16 @@ public class SecurityConfig {
     @Value("${swagger.password}")
     private String swaggerPassword;
 
-    //    /** 스웨거용 인메모리 유저 설정 */
-    //    @Bean
-    //    public InMemoryUserDetailsManager userDetailsService() {
-    //        UserDetails user =
-    //                User.withUsername(swaggerUser)
-    //                        .password(passwordEncoder().encode(swaggerPassword))
-    //                        .roles("SWAGGER")
-    //                        .build();
-    //        return new InMemoryUserDetailsManager(user);
-    //    }
+     /** 스웨거용 인메모리 유저 설정 */
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService() {
+        UserDetails user =
+                User.withUsername(swaggerUser)
+                        .password(passwordEncoder().encode(swaggerPassword))
+                        .roles("SWAGGER")
+                        .build();
+        return new InMemoryUserDetailsManager(user);
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -46,22 +51,18 @@ public class SecurityConfig {
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        //        http.authorizeRequests()
-        //                .expressionHandler(expressionHandler())
-        //                .antMatchers(SwaggerPatterns)
-        //                .permitAll()
-        //                .mvcMatchers("/auth/oauth/**")
-        //                .permitAll()
-        //                .mvcMatchers("/user/login/**")
-        //                .permitAll()
-        //                .mvcMatchers("/auth/token/refresh")
-        //                .permitAll()
-        //                .mvcMatchers("/**/health/**")
-        //                .permitAll()
-        //                .mvcMatchers("/communities/validate/**")
-        //                .permitAll()
-        //                .anyRequest()
-        //                .hasRole("USER");
+                http.authorizeRequests()
+                        .expressionHandler(expressionHandler())
+                        .antMatchers(SwaggerPatterns)
+                        .permitAll()
+                        .mvcMatchers("/user/login/**")
+                        .permitAll()
+                        .mvcMatchers("/auth/token/refresh")
+                        .permitAll()
+                        .mvcMatchers("/**/health/**")
+                        .permitAll()
+                        .anyRequest()
+                        .hasRole("USER");
 
         http.apply(filterConfig);
 

@@ -7,6 +7,7 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -22,7 +23,7 @@ public class KakaoRestful {
     private static final String GET_USER_INFO_PATH = "/v2/user/me";
 
     /** 카카오 인증 토큰 획득 */
-    public KakaoAuthPayload getKakaoAuthInfo(Map<String, String> authRequest) {
+    public KakaoAuthPayload getKakaoAuthInfo(MultiValueMap<String, String> authRequest) {
         return kakaoAuthApiWebClient
                 .mutate()
                 .build()
