@@ -1,9 +1,9 @@
 package com.unit.whisper.domain;
 
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import javax.persistence.*;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;

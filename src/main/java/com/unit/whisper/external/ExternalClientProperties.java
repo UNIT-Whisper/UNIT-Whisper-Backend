@@ -4,10 +4,12 @@ package com.unit.whisper.external;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConstructorBinding;
 
 @Getter
 @AllArgsConstructor
-@ConfigurationProperties("client")
+@ConstructorBinding
+@ConfigurationProperties(prefix = "client")
 public class ExternalClientProperties {
 
     private final Kakao kakao;
