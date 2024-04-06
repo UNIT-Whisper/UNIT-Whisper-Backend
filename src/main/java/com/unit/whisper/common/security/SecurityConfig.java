@@ -54,6 +54,8 @@ public class SecurityConfig {
                 .expressionHandler(expressionHandler())
                 .antMatchers(SwaggerPatterns)
                 .permitAll()
+                .mvcMatchers("/*")
+                .permitAll()
                 .mvcMatchers("/user/login/**")
                 .permitAll()
                 .mvcMatchers("/user/login/refresh")

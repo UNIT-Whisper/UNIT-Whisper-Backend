@@ -2,8 +2,9 @@ package com.unit.whisper.domain.whisper;
 
 
 import com.unit.whisper.domain.BaseEntity;
-import com.unit.whisper.domain.user.User;
+import java.time.LocalDateTime;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,27 +20,34 @@ public class Whisper extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-
     private String content;
 
     private Double latitude;
 
     private Double longitude;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @NotNull private Long userId;
+
+    private String address;
+
+    private LocalDateTime lastNotificationDateTime;
+
+    public static Whisper toEntity(
+            Long userId, String content, Double latitude, Double longitude, String address) {
+        return new Whisper(userId, content, latitude, longitude, address);
+    }
 
     @Builder
-    private Whisper(String title, String content, Double latitude, Double longitude) {
-        this.title = title;
+    private Whisper(
+            Long userId, String content, Double latitude, Double longitude, String address) {
+        this.userId = userId;
         this.content = content;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.address = address;
     }
 
-    public void userUpdate(User user) {
-        this.user = user;
+    public void updateLastNotificationDateTime(LocalDateTime lastNotificationDateTime) {
+        this.lastNotificationDateTime = lastNotificationDateTime;
     }
 }

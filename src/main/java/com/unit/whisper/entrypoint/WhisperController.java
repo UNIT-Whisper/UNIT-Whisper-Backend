@@ -23,6 +23,7 @@ public class WhisperController {
     @Operation(summary = "속삭임 생성", description = "사용자들의 속삭임을 저장한다.")
     public CustomResponseEntity<Long> createWhisper(
             @Valid @RequestBody WhisperCreateRequest request) {
+        whisperService.saveWhisper(request);
 
         return CustomResponseEntity.success(whisperService.saveWhisper(request));
     }

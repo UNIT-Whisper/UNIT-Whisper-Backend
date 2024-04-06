@@ -1,24 +1,23 @@
 package com.unit.whisper.dto;
 
 
-import com.unit.whisper.domain.whisper.Whisper;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import lombok.Builder;
+import lombok.Getter;
 
+@Getter
+@Builder
 @Schema(description = "속삭임 생성 포맷")
-public record WhisperCreateRequest(
-        @NotBlank(message = "제목은 필수 입니다.") String title,
-        @NotBlank(message = "내용은 필수 입니다.") String content,
-        @NotNull(message = "위도는 필수 입니다.") Double latitude,
-        @NotNull(message = "경도는 필수 입니다.") Double longitude) {
+public class WhisperCreateRequest {
 
-    public Whisper toEntity() {
-        return Whisper.builder()
-                .title(title)
-                .content(content)
-                .latitude(latitude)
-                .longitude(longitude)
-                .build();
-    }
+    @NotBlank(message = "내용은 필수 입니다.")
+    private String content;
+
+    @NotNull(message = "위도는 필수 입니다.")
+    private Double latitude;
+
+    @NotNull(message = "경도는 필수 입니다.")
+    private Double longitude;
 }
