@@ -19,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     @Operation(summary = "카카오 소셜 로그인")
-    @GetMapping("/login")
+    @PostMapping("/login")
     public CustomResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
         return CustomResponseEntity.success(userService.loginKakao(request));
     }
