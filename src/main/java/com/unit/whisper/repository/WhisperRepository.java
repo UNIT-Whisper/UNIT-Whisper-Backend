@@ -1,7 +1,7 @@
 package com.unit.whisper.repository;
 
 
-import com.unit.whisper.domain.Whisper;
+import com.unit.whisper.domain.whisper.Whisper;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

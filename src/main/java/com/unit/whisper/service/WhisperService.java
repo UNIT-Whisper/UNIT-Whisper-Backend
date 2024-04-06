@@ -1,8 +1,8 @@
 package com.unit.whisper.service;
 
 
-import com.unit.whisper.domain.User;
-import com.unit.whisper.domain.Whisper;
+import com.unit.whisper.domain.user.User;
+import com.unit.whisper.domain.whisper.Whisper;
 import com.unit.whisper.error.exception.UserNotFoundException;
 import com.unit.whisper.repository.UserRepository;
 import com.unit.whisper.repository.WhisperRepository;

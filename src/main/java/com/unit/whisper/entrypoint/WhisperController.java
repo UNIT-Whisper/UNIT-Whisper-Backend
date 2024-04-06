@@ -4,7 +4,7 @@ package com.unit.whisper.entrypoint;
 import com.unit.whisper.dto.WhisperCreateRequest;
 import com.unit.whisper.service.WhisperService;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

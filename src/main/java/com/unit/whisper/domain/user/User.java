@@ -1,7 +1,8 @@
-package com.unit.whisper.domain;
+package com.unit.whisper.domain.user;
 
 
-import jakarta.persistence.*;
+import com.unit.whisper.domain.BaseEntity;
+import javax.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,12 @@ public class User extends BaseEntity {
 
     private String nickName;
 
-    private int age;
+    private User(String email, String nickName) {
+        this.email = email;
+        this.nickName = nickName;
+    }
 
-    private String gender;
+    public static User toEntity(String email, String nickName) {
+        return new User(email, nickName);
+    }
 }
