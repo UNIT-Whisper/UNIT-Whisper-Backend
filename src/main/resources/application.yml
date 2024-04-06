@@ -19,12 +19,32 @@ spring:
     url: jdbc:mysql://whisper-database.clkock6csj2n.ap-northeast-2.rds.amazonaws.com:3306/whisper?serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
     username: whisper
     password: Whisper7
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  main:
+    allow-bean-definition-overriding: true
 
 client:
   kakao:
     clientId: ${KAKAO_CLIENT_ID}
     clientSecret: ${KAKAO_CLIENT_SECRET}
     authBaseUrl: ${KAKAO_AUTH_BASE_URL}
-    authRedirectUri: ${KAKAO_REDIRECT_URI}
-    authLocalRedirectUri: ${KAKAO_LOCAL_REDIRECT_URI}
+    authRedirectUri: http://localhost:8080/auth/callback/kakao
+    authLocalRedirectUri: http://localhost:8080/auth/callback/kakao
+#    authRedirectUri: ${KAKAO_REDIRECT_URI}
+#    authLocalRedirectUri: ${KAKAO_LOCAL_REDIRECT_URI}
     apiBaseUrl: ${KAKAO_API_BASE_URL}
+
+auth:
+  jwt:
+    secret-key: ${JWT_SECRET_KEY:testkeytestkeytestkeytestkeytestkeytestkeytestkeytestkeytestkey}
+    access-exp: ${JWT_ACCESS_EXP:3600}
+    refresh-exp: ${JWT_REFRESH_EXP:3600}
+    issuer: ${JWT_ISSUER:test}
+
+swagger:
+  user: ${SWAGGER_USER:user}
+  password: ${SWAGGER_PASSWORD:password}
+
+#client-authentication-method: client_secret_post

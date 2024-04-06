@@ -1,7 +1,9 @@
-package com.unit.whisper.domain;
+package com.unit.whisper.domain.whisper;
 
 
-import jakarta.persistence.*;
+import com.unit.whisper.domain.BaseEntity;
+import com.unit.whisper.domain.user.User;
+import javax.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

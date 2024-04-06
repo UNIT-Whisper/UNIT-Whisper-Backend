@@ -1,10 +1,10 @@
 package com.unit.whisper.dto;
 
 
-import com.unit.whisper.domain.Whisper;
+import com.unit.whisper.domain.whisper.Whisper;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Schema(description = "속삭임 생성 포맷")
 public record WhisperCreateRequest(

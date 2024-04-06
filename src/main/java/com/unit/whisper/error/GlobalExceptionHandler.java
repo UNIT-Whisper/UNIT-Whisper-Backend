@@ -7,7 +7,7 @@ import static com.unit.whisper.error.ErrorCode.REQUEST_PARAMETER_NOT_FOUND_ERROR
 import static com.unit.whisper.error.ErrorCode.REQUEST_PARAMETER_TYPE_NOT_MATCH_ERROR;
 
 import com.unit.whisper.error.exception.BusinessException;
-import jakarta.transaction.TransactionalException;
+import javax.transaction.TransactionalException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
