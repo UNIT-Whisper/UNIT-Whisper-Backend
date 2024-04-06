@@ -13,8 +13,8 @@ import org.springframework.data.redis.core.RedisKeyValueAdapter;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 
 @EnableRedisRepositories(
-    basePackages = "com.unit",
-    enableKeyspaceEvents = RedisKeyValueAdapter.EnableKeyspaceEvents.ON_STARTUP)
+        basePackages = "com.unit",
+        enableKeyspaceEvents = RedisKeyValueAdapter.EnableKeyspaceEvents.ON_STARTUP)
 @Configuration
 public class RedisConfig {
 
@@ -29,10 +29,10 @@ public class RedisConfig {
         RedisStandaloneConfiguration redisConfig = new RedisStandaloneConfiguration(host, port);
 
         LettuceClientConfiguration clientConfig =
-            LettuceClientConfiguration.builder()
-                .commandTimeout(Duration.ofSeconds(1))
-                .shutdownTimeout(Duration.ZERO)
-                .build();
+                LettuceClientConfiguration.builder()
+                        .commandTimeout(Duration.ofSeconds(1))
+                        .shutdownTimeout(Duration.ZERO)
+                        .build();
         return new LettuceConnectionFactory(redisConfig, clientConfig);
     }
 }
