@@ -1,1 +1,12 @@
-spring.application.name=whisper
+spring:
+  application:
+    name: whisper
+
+client:
+  kakao:
+    clientId: ${KAKAO_CLIENT_ID}
+    clientSecret: ${KAKAO_CLIENT_SECRET}
+    authBaseUrl: ${KAKAO_AUTH_BASE_URL}
+    authRedirectUri: ${KAKAO_REDIRECT_URI}
+    authLocalRedirectUri: ${KAKAO_LOCAL_REDIRECT_URI}
+    apiBaseUrl: ${KAKAO_API_BASE_URL}
