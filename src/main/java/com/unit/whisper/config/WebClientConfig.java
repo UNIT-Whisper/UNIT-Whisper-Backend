@@ -39,7 +39,7 @@ public class WebClientConfig {
     @Bean
     public WebClient kakaoAuthApiWebClient(ExternalClientProperties externalClientProperties) {
         return WebClient.builder()
-                .baseUrl(externalClientProperties.getKakao().getAuthBaseurl())
+                .baseUrl("https://kauth.kakao.com")
                 .defaultHeader(
                         HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                 .clientConnector(new ReactorClientHttpConnector(httpClient(50000, 50000, 50000)))
@@ -51,7 +51,7 @@ public class WebClientConfig {
     @Bean
     public WebClient kakaoApiWebClient(ExternalClientProperties externalClientProperties) {
         return WebClient.builder()
-                .baseUrl(externalClientProperties.getKakao().getApiBaseUrl())
+                .baseUrl("https://kapi.kakao.com")
                 .defaultHeader(
                         HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                 .clientConnector(new ReactorClientHttpConnector(httpClient(10000, 10000, 50000)))
