@@ -20,10 +20,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         String[] patterns = allowedOriginPatterns.toArray(String[]::new);
         registry.addMapping("/**")
-            .allowedMethods("*")
-            .allowedOrigins(patterns)
-            .allowedOriginPatterns("*")
-            .exposedHeaders("Set-Cookie")
-            .allowCredentials(true);
+                .allowedMethods("*")
+                .allowedOrigins(patterns)
+                .allowedOriginPatterns("*")
+                .exposedHeaders("Set-Cookie")
+                .allowCredentials(true);
     }
 }
