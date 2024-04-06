@@ -61,7 +61,6 @@ jobs:
           timeout: 60s
           # 도커 작업
           script: |
-            cd app
             sudo rm concal.log
             sudo docker rm - f $(docker ps -qa)
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}:latest
