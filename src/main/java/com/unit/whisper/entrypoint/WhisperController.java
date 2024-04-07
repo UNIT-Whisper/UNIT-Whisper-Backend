@@ -27,8 +27,9 @@ public class WhisperController {
     }
 
     @Operation(summary = "구름 조회", description = "사용자들의 저장한 구름 정보를 알림 목록에서 상세 조회한다.")
-    @GetMapping("/{whisperId}")
-    public CustomResponseEntity<WhisperResponse> getWhisper(@PathVariable Long whisperId) {
-        return CustomResponseEntity.success(whisperService.getWhisper(whisperId));
+    @GetMapping("/{whisperId}/{notificationId}")
+    public CustomResponseEntity<WhisperResponse> getWhisper(
+            @PathVariable Long whisperId, @PathVariable Long notificationId) {
+        return CustomResponseEntity.success(whisperService.getWhisper(whisperId, notificationId));
     }
 }
