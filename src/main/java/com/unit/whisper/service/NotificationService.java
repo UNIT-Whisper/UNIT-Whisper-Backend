@@ -50,6 +50,7 @@ public class NotificationService {
                             Notification.toEntity(
                                     whisper.getAddress(), whisper.getUserId(), whisper.getId());
                     notificationRepository.save(notification);
+                    notificationRepository.flush();
                 });
 
         // 알림 조회 로직
