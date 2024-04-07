@@ -25,7 +25,7 @@ public interface WhisperRepository extends JpaRepository<Whisper, Long> {
                             + "from whisper\n"
                             + "where latitude between ?3 and ?4 and longitude between ?5 and ?6 and TIMESTAMPDIFF(HOUR, last_notification_date_time, now()) > 24\n"
                             //                            + "having distance <= 0.1\n"
-                            + "having distance <= 1\n"
+                            + "having distance <= 1.0\n"
                             + "order by distance DESC;",
             nativeQuery = true)
     List<Whisper> findWithinRadius(
