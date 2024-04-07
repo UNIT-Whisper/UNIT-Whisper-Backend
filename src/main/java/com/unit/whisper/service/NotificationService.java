@@ -40,9 +40,7 @@ public class NotificationService {
         // 구름을 -> 알림으로 발행
         List<Whisper> withinRadius =
                 whisperRepository.findWithinRadius(
-                        request.getCurMemberX(), request.getCurMemberY(),
-                        request.getStartX(), request.getEndX(),
-                        request.getStartY(), request.getEndY());
+                        request.getCurMemberX(), request.getCurMemberY());
         //                LocalDateTime.now(ZoneId.of("Asia/Seoul"))
 
         // 이전에 알림으로 설정되어 있지 않은 경어에 대해서 알림으로 추가
