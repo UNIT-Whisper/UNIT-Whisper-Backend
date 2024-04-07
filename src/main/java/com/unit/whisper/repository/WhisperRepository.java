@@ -23,7 +23,7 @@ public interface WhisperRepository extends JpaRepository<Whisper, Long> {
             value =
                     "SELECT\n"
                             + "*\n"
-                            + "FROM locationMap\n"
+                            + "FROM whisper\n"
                             + "WHERE\n"
                             + "(6371*acos(cos(radians(37.579651))*cos(radians(:curMemberX))*cos(radians(:curMemberY)\n"
                             + "- radians(126.977041))+sin(radians(37.579651))*sin(radians(:curMemberX)))) < 20\n"
